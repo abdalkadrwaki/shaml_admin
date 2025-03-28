@@ -46,7 +46,7 @@ return [
             'driver'    => 'mysql',
             'host'      => env('DB_HOST_USER', '127.0.0.1'),
             'port'      => env('DB_PORT_USER', '3306'),
-            'database'  => env('DB_DATABASE_USER', 'shaml-user'),
+            'database'  => env('DB_DATABASE_USER', 'laravel_user'),
             'username'  => env('DB_USERNAME_USER', 'root'),
             'password'  => env('DB_PASSWORD_USER', ''),
             'charset'   => 'utf8mb4',
