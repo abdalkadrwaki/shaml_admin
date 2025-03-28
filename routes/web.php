@@ -4,9 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CurrencyController;
 
-Route::prefix('admin')->middleware(['auth'])->group(function () {
-    Route::resource('currencies', CurrencyController::class);
-});
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,10 +18,10 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
+
     Route::middleware(['auth'])->group(function () {
         Route::resource('currencies', CurrencyController::class);
     });
-
 
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
