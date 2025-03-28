@@ -16,8 +16,8 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link href="{{ route('currencies') }}" :active="request()->routeIs('currencies')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link href="{{ route('currencies.index') }}" :active="request()->routeIs('currencies.index')">
+                        {{ __('currencies') }}
                     </x-nav-link>
 
 
