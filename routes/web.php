@@ -19,9 +19,9 @@ Route::middleware([
     })->name('dashboard');
 
 
-   
+    Route::middleware(['auth'])->group(function () {
         Route::resource('currencies', CurrencyController::class);
-
+    });
 
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
