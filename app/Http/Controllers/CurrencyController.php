@@ -8,10 +8,11 @@ use Illuminate\Support\Facades\Schema;
 
 class CurrencyController extends Controller
 {
-    
+
     // عرض جميع العملات
     public function index()
     {
+        dd(env('USER_DB_HOST'));
         $currencies = Currency::on('user_db')->get();
         return view('currencies.index', compact('currencies'));
     }
