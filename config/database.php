@@ -71,8 +71,9 @@ return [
             'charset'  => 'utf8',
             'prefix'   => '',
             'schema'   => 'public',
-            'sslmode'  => 'require', // تأكد من أن إعدادات SSL متوافقة مع الخادم
+            'sslmode'  => 'require',
         ],
+
 
 
         'mariadb' => [
