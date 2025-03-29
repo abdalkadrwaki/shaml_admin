@@ -63,7 +63,7 @@ return [
         // اتصال قاعدة بيانات المستخدمين (PostgreSQL)
         'user_db' => [
             'driver'   => env('USER_DB_CONNECTION', 'pgsql'),
-            'host'     => env('USER_DB_HOST', '127.0.0.1'),
+            'host'     => env('USER_DB_HOST', 'ep-young-dew-a5vt625i.aws-us-east-2.pg.laravel.cloud'),
             'port'     => env('USER_DB_PORT', '5432'),
             'database' => env('USER_DB_DATABASE', 'laravel_user'),
             'username' => env('USER_DB_USERNAME', 'laravel'),
