@@ -42,19 +42,20 @@ return [
             'synchronous' => null,
         ],
 
-      'pgsql' => [
-    'driver' => 'pgsql',
-    'host' => env('DB_HOST', '127.0.0.1'),
-    'port' => env('DB_PORT', '5432'),
-    'database' => env('DB_DATABASE', 'laravel_user'),
-    'username' => env('DB_USERNAME', 'laravel'),
-    'password' => env('DB_PASSWORD', 'npg_ie9BFNpEKyX0'),
-    'charset' => env('DB_CHARSET', 'utf8'),
-    'prefix' => '',
-    'prefix_indexes' => true,
-    'search_path' => 'public',
-    'sslmode' => 'prefer',  // تأكد من أن هذا الخيار مناسب للخادم السحابي
-],
+    'user_db' => [
+        'driver' => 'pgsql',
+        'host' => env('DB_HOST_USER', '127.0.0.1'),
+        'port' => env('DB_PORT_USER', '5432'),
+        'database' => env('DB_DATABASE_USER', 'laravel_user'),
+        'username' => env('DB_USERNAME_USER', 'laravel'),
+        'password' => env('DB_PASSWORD_USER', 'npg_ie9BFNpEKyX0'),
+        'charset' => 'utf8',
+        'collation' => 'utf8_unicode_ci',
+        'prefix' => '',
+        'search_path' => 'public',
+        'sslmode' => 'prefer', // أو 'require' حسب الحاجة
+    ],
+
 
 
         'mysql' => [
