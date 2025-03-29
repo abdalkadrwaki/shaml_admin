@@ -42,20 +42,19 @@ return [
             'synchronous' => null,
         ],
 
-        'user_db' => [
-            'driver' => 'pgsql',
-            'host' => env('DB_HOST_USER', '127.0.0.1'), // تأكد من استخدام DB_HOST_USER
-            'port' => env('DB_PORT_USER', '5432'),      // تأكد من استخدام DB_PORT_USER
-            'database' => env('DB_DATABASE_USER', 'laravel_user'),
-            'username' => env('DB_USERNAME_USER', 'laravel'),
-            'password' => env('DB_PASSWORD_USER', 'npg_ie9BFNpEKyX0'),
-            'charset' => 'utf8',
-            'prefix' => '',
-            'schema' => 'public',
-            'sslmode' => 'require', // غير من 'prefer' إلى 'require' إذا كان الخادم يستخدم SSL
-        ],
-
-
+      'user_db' => [
+    'driver' => 'pgsql',
+    'url' => env('DATABASE_URL'),
+    'host' => env('DB_HOST', '127.0.0.1'), // تأكد من أنه يقرأ DB_HOST
+    'port' => env('DB_PORT', '5432'),
+    'database' => env('DB_DATABASE', 'laravel_user'),
+    'username' => env('DB_USERNAME', 'laravel'),
+    'password' => env('DB_PASSWORD', 'npg_ie9BFNpEKyX0'),
+    'charset' => 'utf8',
+    'prefix' => '',
+    'schema' => 'public',
+    'sslmode' => 'require', // غير إلى 'require' إذا كان الخادم يستخدم SSL
+],
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DB_URL'),
