@@ -12,7 +12,8 @@ class CurrencyController extends Controller
     // عرض جميع العملات
     public function index()
     {
-        dd(env('USER_DB_HOST'));
+        dd(config('database.connections.user_db.host'));
+
         $currencies = Currency::on('user_db')->get();
         return view('currencies.index', compact('currencies'));
     }
