@@ -41,28 +41,13 @@ return [
             'journal_mode' => null,
             'synchronous' => null,
         ],
-
-      'user_db' => [
-    'driver' => 'pgsql',
-    'url' => env('DATABASE_URL'),
-    'host' => env('DB_HOST', '127.0.0.1'), // تأكد من أنه يقرأ DB_HOST
-    'port' => env('DB_PORT', '5432'),
-    'database' => env('DB_DATABASE', 'laravel_user'),
-    'username' => env('DB_USERNAME', 'laravel'),
-    'password' => env('DB_PASSWORD', 'npg_ie9BFNpEKyX0'),
-    'charset' => 'utf8',
-    'prefix' => '',
-    'schema' => 'public',
-    'sslmode' => 'require', // غير إلى 'require' إذا كان الخادم يستخدم SSL
-],
-        'mysql' => [
-            'driver' => 'mysql',
-            'url' => env('DB_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'laravel_admin'),
-            'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', ''),
+        'admin' => [
+            'driver' => env('ADMIN_DB_CONNECTION', 'mysql'),
+            'host' => env('ADMIN_DB_HOST', '127.0.0.1'),
+            'port' => env('ADMIN_DB_PORT', '3306'),
+            'database' => env('ADMIN_DB_DATABASE', 'laravel_admin'),
+            'username' => env('ADMIN_DB_USERNAME', 'root'),
+            'password' => env('ADMIN_DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => env('DB_CHARSET', 'utf8mb4'),
             'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
@@ -74,6 +59,21 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
+
+        // اتصال قاعدة بيانات المستخدمين (PostgreSQL)
+        'user_db' => [
+            'driver'   => env('USER_DB_CONNECTION', 'pgsql'),
+            'host'     => env('USER_DB_HOST', '127.0.0.1'),
+            'port'     => env('USER_DB_PORT', '5432'),
+            'database' => env('USER_DB_DATABASE', 'laravel_user'),
+            'username' => env('USER_DB_USERNAME', 'laravel'),
+            'password' => env('USER_DB_PASSWORD', 'npg_ie9BFNpEKyX0'),
+            'charset'  => 'utf8',
+            'prefix'   => '',
+            'schema'   => 'public',
+            'sslmode'  => 'require', // تأكد من أن إعدادات SSL متوافقة مع الخادم
+        ],
+      
 
         'mariadb' => [
             'driver' => 'mariadb',
