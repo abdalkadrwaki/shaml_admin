@@ -73,7 +73,7 @@ return [
             'schema'   => 'public',
             'sslmode'  => 'require', // تأكد من أن إعدادات SSL متوافقة مع الخادم
         ],
-      
+
 
         'mariadb' => [
             'driver' => 'mariadb',
