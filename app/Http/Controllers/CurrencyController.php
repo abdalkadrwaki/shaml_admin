@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Currency;
+use App\Models\FriendRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
-
+use Illuminate\Support\Facades\Log;
 class CurrencyController extends Controller
 {
 
@@ -43,17 +44,22 @@ class CurrencyController extends Controller
         $column1 = strtolower($currency->name_en) . '_1';
         $column2 = strtolower($currency->name_en) . '_2';
 
-        // إضافة الأعمدة إلى جدول friend_requests في قاعدة user_db إذا لم تكن موجودة
-        if (!Schema::connection('user_db')->hasColumn('friend_requests', $column1)) {
-            Schema::connection('user_db')->table('friend_requests', function ($table) use ($column1) {
-                $table->decimal($column1, 15, 2)->default(0);
-            });
-        }
+        try {
+            if (!Schema::connection('user_db')->hasColumn('friend_requests', $column1)) {
+                Schema::connection('user_db')->table('friend_requests', function ($table) use ($column1) {
+                    $table->decimal($column1, 15, 2)->default(0);
+                });
+            }
 
-        if (!Schema::connection('user_db')->hasColumn('friend_requests', $column2)) {
-            Schema::connection('user_db')->table('friend_requests', function ($table) use ($column2) {
-                $table->decimal($column2, 15, 2)->default(0);
-            });
+            if (!Schema::connection('user_db')->hasColumn('friend_requests', $column2)) {
+                Schema::connection('user_db')->table('friend_requests', function ($table) use ($column2) {
+                    $table->decimal($column2, 15, 2)->default(0);
+                });
+            }
+            // تنفيذ الكود لبقية الأعمدة...
+        } catch (\Exception $e) {
+            Log::error('Error updating friend_requests: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'حدث خطأ أثناء تحديث جدول friend_requests.');
         }
 
         return redirect()->route('currencies.index')->with('success', 'تمت إضافة العملة بنجاح وتم تحديث جدول friend_requests.');
