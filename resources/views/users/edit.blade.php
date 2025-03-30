@@ -1,6 +1,10 @@
-@extends('layouts.app')
 
-@section('content')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('users') }}
+        </h2>
+    </x-slot>
 <div class="container">
     <h2>تعديل بيانات المستخدم</h2>
     <form action="{{ route('users.update', $user->id) }}" method="POST">
@@ -17,4 +21,4 @@
         <button type="submit" class="btn btn-warning">حفظ التعديلات</button>
     </form>
 </div>
-@endsection
+</x-app-layout>
