@@ -40,10 +40,10 @@ class UserController extends Controller
             'email'    => $request->email,
             'password' => bcrypt($request->password),
             'link_number' => $linkNumber,
-            'user_address' => $request->user_address,  
-            'country_user' => $request->country_user,  
-            'state_user' => $request->state_user,      
-            'Office_name' => $request->Office_name,    
+            'user_address' => $request->user_address,
+            'country_user' => $request->country_user,
+            'state_user' => $request->state_user,
+            'Office_name' => $request->Office_name,
 
         ]);
 
@@ -64,23 +64,31 @@ class UserController extends Controller
         $user = AppUser::findOrFail($id);
 
         $request->validate([
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|email|unique:users,email,'.$user->id,
-            'password' => 'nullable|string|min:6',
+            'name'         => 'required|string|max:255',
+            'email'        => 'required|email|unique:users,email,'.$user->id,
+            'password'     => 'nullable|string|min:6',
             'user_address' => 'nullable|string|max:255',
             'country_user' => 'nullable|string|max:255',
-            'state_user' => 'nullable|string|max:255',
-            'Office_name' => 'nullable|string|max:255',
-
+            'state_user'   => 'nullable|string|max:255',
+            'Office_name'  => 'nullable|string|max:255',
         ]);
 
-        $user->name = $request->name;
+        $user->name  = $request->name;
         $user->email = $request->email;
+
         if ($request->password) {
             $user->password = bcrypt($request->password);
         }
+
+        // تحديث الحقول الإضافية
+        $user->user_address = $request->user_address;
+        $user->country_user = $request->country_user;
+        $user->state_user   = $request->state_user;
+        $user->Office_name  = $request->Office_name;
+
         $user->save();
 
         return redirect()->route('users.index')->with('success', 'تم تعديل بيانات المستخدم بنجاح');
     }
+
 }
