@@ -41,27 +41,21 @@ class CurrencyController extends Controller
         ]);
 
         // إعداد أسماء الأعمدة الخاصة بالعملة
-        $column1 = strtolower($currency->name_en) . '_1';
-        $column2 = strtolower($currency->name_en) . '_2';
+        $column1 = $currency->name_en . '_1';
+        $column2 = $currency->name_en . '_2';
 
-        try {
-            if (!Schema::connection('user_db')->hasColumn('friend_requests', $column1)) {
-                Schema::connection('user_db')->table('friend_requests', function ($table) use ($column1) {
-                    $table->decimal($column1, 15, 2)->default(0);
-                });
-            }
-
-            if (!Schema::connection('user_db')->hasColumn('friend_requests', $column2)) {
-                Schema::connection('user_db')->table('friend_requests', function ($table) use ($column2) {
-                    $table->decimal($column2, 15, 2)->default(0);
-                });
-            }
-            // تنفيذ الكود لبقية الأعمدة...
-        } catch (\Exception $e) {
-            Log::error('Error updating friend_requests: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'حدث خطأ أثناء تحديث جدول friend_requests.');
+        // إضافة الأعمدة إلى جدول friend_requests إذا لم تكن موجودة
+        if (!Schema::connection('user_db')->hasColumn('friend_requests', $column1)) {
+            Schema::connection('user_db')->table('friend_requests', function ($table) use ($column1) {
+                $table->decimal($column1, 15, 2)->default(0);
+            });
         }
 
+        if (!Schema::connection('user_db')->hasColumn('friend_requests', $column2)) {
+            Schema::connection('user_db')->table('friend_requests', function ($table) use ($column2) {
+                $table->decimal($column2, 15, 2)->default(0);
+            });
+        }
         return redirect()->route('currencies.index')->with('success', 'تمت إضافة العملة بنجاح وتم تحديث جدول friend_requests.');
     }
 
