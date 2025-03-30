@@ -12,7 +12,7 @@ class CurrencyController extends Controller
     // عرض جميع العملات
     public function index()
     {
-        
+
         $currencies = Currency::on('user_db')->get();
         return view('currencies.index', compact('currencies'));
     }
