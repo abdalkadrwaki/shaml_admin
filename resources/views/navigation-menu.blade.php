@@ -12,14 +12,18 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
                     <x-nav-link href="{{ route('currencies.index') }}" :active="request()->routeIs('currencies.index')">
-                        {{ __('currenciesب') }}
+                        {{ __('العملات') }}
                     </x-nav-link>
 
+                    <x-nav-link href="{{ route('broadcast.index') }}" :active="request()->routeIs('broadcast.index')">
+                        {{ __('رسائل') }}
+                    </x-nav-link>
 
                 </div>
             </div>
